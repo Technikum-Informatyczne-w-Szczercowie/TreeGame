@@ -8,12 +8,23 @@ public class PlantTree : MonoBehaviour
     
     void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.F) && grown == false)
+        if (grown) return;
+        
+        ScoreManager.instance.ShowInfo();
+        
+        if (Input.GetKeyDown(KeyCode.F))
         {
             tree.transform.localScale += new Vector3(0.7f, 0.7f, 0.7f);
             grown = true;
             Destroy(highlight);
+            
             ScoreManager.instance.AddPoint();
+            ScoreManager.instance.HideInfo();
         }
+    }
+    
+    void OnTriggerExit(Collider other)
+    {
+        ScoreManager.instance.HideInfo();
     }
 }
