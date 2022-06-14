@@ -736,7 +736,6 @@ public class FirstPersonController : MonoBehaviour
             SerFPC.ApplyModifiedProperties();
         }
     }
-
-}
+    }
 
 #endif

@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour
+public class GUIManager : MonoBehaviour
 {
-    public static ScoreManager instance;
+    public static GUIManager instance;
     
     public Text scoreText;
     [SerializeField] Text info;

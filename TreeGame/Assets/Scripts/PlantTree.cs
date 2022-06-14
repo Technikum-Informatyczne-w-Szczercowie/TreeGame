@@ -1,30 +1,38 @@
+using System;
 using UnityEngine;
 
 public class PlantTree : MonoBehaviour
 {
-    public GameObject tree;
-    public GameObject highlight;
+    public GameObject tree;           
+    public GameObject highlight;       
     public bool grown = false;
-    
+
     void OnTriggerStay(Collider other)
     {
         if (grown) return;
         
-        ScoreManager.instance.ShowInfo();
-        
+        GUIManager.instance.ShowInfo();             
+
         if (Input.GetKeyDown(KeyCode.F))
         {
-            tree.transform.localScale += new Vector3(0.7f, 0.7f, 0.7f);
+            var transformLocalScale = tree.transform.localScale;
+            
+            transformLocalScale.x = transformLocalScale.x * 8f;
+            transformLocalScale.y = transformLocalScale.y * 8f;
+            transformLocalScale.z = transformLocalScale.z * 8f;
+            
+            tree.transform.localScale = transformLocalScale;         
+            
             grown = true;
             Destroy(highlight);
             
-            ScoreManager.instance.AddPoint();
-            ScoreManager.instance.HideInfo();
+            GUIManager.instance.AddPoint();         
+            GUIManager.instance.HideInfo();         
         }
     }
     
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)            
     {
-        ScoreManager.instance.HideInfo();
+        GUIManager.instance.HideInfo();            
     }
 }
